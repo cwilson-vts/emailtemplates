@@ -21,7 +21,9 @@ export class HomeComponent {
     {id:'/l3esc', name:'L3 Escalation'}
   ];
 
-  onSubmit(){
+  onSubmit(selected){
+  console.log(selected)
+  selected = this.selected
   this.router.navigate([this.selected])
   }
 }
