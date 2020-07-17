@@ -1,12 +1,11 @@
 <mat-card>
-    <mat-form-field>
+        <mat-form-field>
         <mat-label>Select Your Template</mat-label>
-        <mat-select [(value)]="pathID" name="templates">
-        <mat-option *ngFor="let t of templates" [ngvalue]="t.id" id='t.id'>
-        {{t.name}}
+        <mat-select [(ngModel)]="selected" name="temp">
+        <mat-option *ngFor="let temp of templates" [value]="temp.id">
+        {{temp.name}}
       </mat-option>
     </mat-select>
 </mat-form-field>
-    <button mat-raised-button routerlink="pathID" type="submit">SUBMIT</button>
-
+    <a mat-raised-button type='SUBMIT'(click)="onSubmit()">SUBMIT</a>
 </mat-card>

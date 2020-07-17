@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Router } from '@angular/router';
+
+interface Templates {
+  id: string,
+  name: string
+}
 
 @Component({
   selector: 'app-home',
@@ -7,11 +13,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-
-  constructor() { }
-  pathID= '';
-  templates = [
-    {id:'NS' , name:'Night Shift Appointment'},
-    {id:'L3ESC', name:'L3 Escalation'}
+  pathID: string;
+  selected: string;
+  constructor(private router: Router) { }
+  templates: Templates[] = [
+    {id:'/ns' , name:'Night Shift Appointment'},
+    {id:'/l3esc', name:'L3 Escalation'}
   ];
+
+  onSubmit(){
+  this.router.navigate([this.selected])
+  }
 }
