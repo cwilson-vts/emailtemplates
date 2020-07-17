@@ -17,8 +17,8 @@ export class HomeComponent {
   selected: string;
   constructor(private router: Router) { }
   templates: Templates[] = [
-    {id:'/ns' , name:'Night Shift Appointment'},
-    {id:'/l3esc', name:'L3 Escalation'}
+    {id:'ns' , name:'Night Shift Appointment'},
+    {id:'l3esc', name:'L3 Escalation'}
   ];
 
   onSubmit(selected){

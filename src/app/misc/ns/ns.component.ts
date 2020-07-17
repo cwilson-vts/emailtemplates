@@ -11,5 +11,7 @@ export class NsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  onSubmit(){
+    console.log();
+  }
 }

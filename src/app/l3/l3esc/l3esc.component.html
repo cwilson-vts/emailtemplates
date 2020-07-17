@@ -1,0 +1,49 @@
+<mat-card>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <mat-form-field>
+            <mat-label>Customer Name</mat-label>
+            <input matInput ngModel name="custName">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Contact Name</mat-label>
+            <input matInput ngModel name="stcontact">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Controller Software and Version</mat-label>
+            <input matInput ngModel name="sft">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Back Office Type</mat-label>
+            <input matInput ngModel name="boType">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Hardware Type</mat-label>
+            <input matInput ngModel name="hdwrtype">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Issue</mat-label>
+            <input matInput ngModel name="issue">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Work Done</mat-label>
+            <textarea matInput ngModel name="work" rows="10"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>E-Auto Number</mat-label>
+            <input matInput ngModel name="eaNumber">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Manager Approving this Template</mat-label>
+            <input matInput ngModel name="mgrApp">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>NCR Ticket Number</mat-label>
+            <input matInput ngModel name="ncrNum">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>NCR Tech Name</mat-label>
+            <input matInput ngModel name="ncrTech">
+        </mat-form-field>
+</form>
+<button mat-raised-button type="submit" >SUBMIT</button>
+</mat-card>
