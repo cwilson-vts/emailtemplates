@@ -1,5 +1,6 @@
-<mat-card>
-    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+<div *ngIf="!isSub">
+    <mat-card >
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" >
         <mat-form-field>
             <mat-label>Customer Name</mat-label>
             <input matInput ngModel name="custName">
@@ -44,6 +45,13 @@
             <mat-label>NCR Tech Name</mat-label>
             <input matInput ngModel name="ncrTech">
         </mat-form-field>
+        <button mat-raised-button type="submit" >SUBMIT</button>
+    
 </form>
-<button mat-raised-button type="submit" >SUBMIT</button>
 </mat-card>
+</div>
+<div *ngIf=isSub>
+    <mat-card>
+<a [href]="emailString" mat-raised-button> Click here to Mail</a>
+</mat-card>
+</div>
