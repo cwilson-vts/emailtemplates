@@ -1,5 +1,40 @@
-<mat-card>
-    <form>
-</form>
-<button mat-raised-button (click)='onSubmit()'>SUBMIT</button>
-</mat-card>
+<div *ngIf="!isSub">
+  <mat-card>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <mat-form-field>
+        <mat-label>Customer Name</mat-label>
+        <input matInput ngModel name="custName" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Night Shift Ticket #</mat-label>
+        <input matInput ngModel name="ticket" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Reason for the Appointment</mat-label>
+        <input matInput ngModel name="reason" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Starting the night of</mat-label>
+        <input matInput ngModel name="stNight" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Store Closes</mat-label>
+        <input matInput ngModel name="sClose" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>EOD Runs At</mat-label>
+        <input matInput ngModel name="sEod" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Notes</mat-label>
+        <textarea matInput ngModel name="notes" rows="10"></textarea>
+      </mat-form-field>
+      <button mat-raised-button type="submit">SUBMIT</button>
+    </form>
+  </mat-card>
+</div>
+<div *ngIf="isSub">
+  <mat-card>
+    <a [href]="emailString" mat-raised-button> Click here to Mail</a>
+  </mat-card>
+</div>

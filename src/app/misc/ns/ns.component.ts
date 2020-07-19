@@ -1,17 +1,28 @@
 import { Component, OnInit } from '@angular/core';
+import { Form, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-ns',
   templateUrl: './ns.component.html',
-  styleUrls: ['./ns.component.scss']
+  styleUrls: ['./ns.component.scss'],
 })
 export class NsComponent implements OnInit {
+  type: 'sub' | 'notSub';
+  emailString = '';
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
+  ngOnInit() {
+    this.type = 'notSub';
   }
-  onSubmit(){
-    console.log();
+
+  get isSub() {
+    return this.type === 'sub';
+  }
+
+  onSubmit(form: NgForm) {
+    console.log(form);
+    this.type = 'sub';
+    this.emailString =
+      'mailto:ncr_l3_escalations@truno.com?cc=bramos@truno.com;jcabello@truno.com&subject=L3%20Escalations%20-%20';
   }
 }
