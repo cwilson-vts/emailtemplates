@@ -13,17 +13,31 @@
         <mat-label>Reason for the Appointment</mat-label>
         <input matInput ngModel name="reason" />
       </mat-form-field>
-      <mat-form-field>
+    <mat-form-field appearance="fill">
         <mat-label>Starting the night of</mat-label>
-        <input matInput ngModel name="stNight" />
+  <input matInput [matDatepicker]="picker" name="stNight">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker touchUi #picker></mat-datepicker>
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Store Closes At:</mat-label>
+  <input matInput [ngxMatDatetimePicker]="sClose" name="sClose">
+  <mat-datepicker-toggle matSuffix [for]="sClose"></mat-datepicker-toggle>
+  <ngx-mat-datetime-picker #sClose [showSpinners]="showSpinners" [showSeconds]="showSeconds" [touchUi]="touchUi" ></ngx-mat-datetime-picker>
+      </mat-form-field>
+      <!--<mat-form-field>
         <mat-label>Store Closes</mat-label>
         <input matInput ngModel name="sClose" />
       </mat-form-field>
       <mat-form-field>
         <mat-label>EOD Runs At</mat-label>
         <input matInput ngModel name="sEod" />
+      </mat-form-field>-->
+      <mat-form-field appearance="fill">
+        <mat-label>EOD Runs At:</mat-label>
+  <input matInput [ngxMatDatetimePicker]="sEod" name="sEod">
+  <mat-datepicker-toggle matSuffix [for]="sEod"></mat-datepicker-toggle>
+  <ngx-mat-datetime-picker #sEod [showSpinners]="showSpinners" [showSeconds]="showSeconds" [touchUi]="touchUi" ></ngx-mat-datetime-picker>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Notes</mat-label>

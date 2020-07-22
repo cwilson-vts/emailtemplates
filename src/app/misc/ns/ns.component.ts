@@ -9,6 +9,9 @@ import { Form, NgForm } from '@angular/forms';
 export class NsComponent implements OnInit {
   type: 'sub' | 'notSub';
   emailString = '';
+  showSpinners = 1;
+  showSeconds = false;
+  touchUi = true; 
   constructor() {}
 
   ngOnInit() {

@@ -8,16 +8,20 @@ import { NsComponent } from '../misc/ns/ns.component';
 import { RouterModule } from '@angular/router';
 import { ShellComponent } from './shell/shell.component';
 
-
+import {
+  NgxMatDatetimePickerModule, 
+  NgxMatNativeDateModule, 
+  NgxMatTimepickerModule 
+} from '@angular-material-components/datetime-picker';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatNativeDateModule } from "@angular/material/core";
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from "@angular/material/select";
 import { MatToolbarModule } from '@angular/material/toolbar';
 
@@ -31,14 +35,17 @@ const modules = [
   FormsModule,
   LayoutModule,
   RouterModule,
+  NgxMatDatetimePickerModule, 
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule,
   MatButtonModule,
   MatCardModule,
+  MatDatepickerModule,
   MatFormFieldModule,
-  MatIconModule,
   MatInputModule,
   MatListModule,
   MatMenuModule,
-  MatSnackBarModule,
+  MatNativeDateModule,
   MatSelectModule,
   MatSidenavModule,
   MatToolbarModule
