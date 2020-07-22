@@ -1,29 +1,30 @@
+import { TeamService } from './../shared/services/teams.service';
 import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 
 interface Templates {
-  id: string,
-  name: string
+  id: string;
+  name: string;
 }
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
   pathID: string;
   selected: string;
-  constructor(private router: Router) { }
+  constructor(private router: Router, private teams: TeamService) {}
   templates: Templates[] = [
-    {id:'ns' , name:'Night Shift Appointment'},
-    {id:'l3esc', name:'L3 Escalation'}
+    { id: 'ns', name: 'Night Shift Appointment' },
+    { id: 'l3esc', name: 'L3 Escalation' },
   ];
 
-  onSubmit(selected){
-  console.log(selected)
-  selected = this.selected
-  this.router.navigate([this.selected])
+  onSubmit(selected) {
+    console.log(selected);
+    selected = this.selected;
+    this.router.navigate([this.selected]);
   }
 }
