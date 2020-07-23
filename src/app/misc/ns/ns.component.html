@@ -3,7 +3,7 @@
     <form #f="ngForm" (ngSubmit)="onSubmit(f)">
       <mat-form-field>
         <mat-label>Customer Name</mat-label>
-        <input matInput ngModel name="custName" />
+        <input matInput ngModel [name]="custName" />
       </mat-form-field>
       <mat-form-field>
         <mat-label>Night Shift Ticket #</mat-label>
@@ -23,21 +23,13 @@
         <mat-label>Store Closes At:</mat-label>
   <input matInput [ngxMatDatetimePicker]="sClose" name="sClose">
   <mat-datepicker-toggle matSuffix [for]="sClose"></mat-datepicker-toggle>
-  <ngx-mat-datetime-picker #sClose [showSpinners]="showSpinners" [showSeconds]="showSeconds" [touchUi]="touchUi" ></ngx-mat-datetime-picker>
+  <ngx-mat-datetime-picker #sClose [showSpinners]="showSpinners" [showSeconds]="showSeconds"></ngx-mat-datetime-picker>
       </mat-form-field>
-      <!--<mat-form-field>
-        <mat-label>Store Closes</mat-label>
-        <input matInput ngModel name="sClose" />
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>EOD Runs At</mat-label>
-        <input matInput ngModel name="sEod" />
-      </mat-form-field>-->
       <mat-form-field appearance="fill">
         <mat-label>EOD Runs At:</mat-label>
   <input matInput [ngxMatDatetimePicker]="sEod" name="sEod">
   <mat-datepicker-toggle matSuffix [for]="sEod"></mat-datepicker-toggle>
-  <ngx-mat-datetime-picker #sEod [showSpinners]="showSpinners" [showSeconds]="showSeconds" [touchUi]="touchUi" ></ngx-mat-datetime-picker>
+  <ngx-mat-datetime-picker #sEod [showSpinners]="showSpinners" [showSeconds]="showSeconds"></ngx-mat-datetime-picker>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Notes</mat-label>
@@ -48,6 +40,69 @@
   </mat-card>
 </div>
 <div *ngIf="isSub">
+<mat-card>
+  <textarea>
+    To: Testing Team <test@test.com>
+Subject: &#128293; Night Shift Appointment:{{custName}} - {{ticket}}&#128293;
+X-Unsent: 1
+Content-Type: text/html
+
+<html>
+<head>
+<style>
+    body, html, table {
+        font-family: Calibri, Arial, sans-serif;
+    }
+    .pastdue { color: crimson; }
+    table {
+    	border:none;
+    	padding: 6px;
+    }
+    thead {
+        text-align: center;
+        font-size: 1.2em;
+        color: navy;
+        background-color: silver;
+        font-weight: bold;
+    }
+    tbody td {
+    	text-align: center;
+    }
+</style>
+</head>
+<body>
+<table>
+    <tr>
+    <td>Store: </td>
+    <td>{{custName}}</td>
+</tr>
+    <tr>
+    <td>Task: </td>
+    <td>{{reason}}</t>
+</tr>
+    <tr>
+    <td>When: </td>
+    <td>{{stNight}}</td>
+</tr>
+    <tr>
+    <td>Store Closes At: </td>
+    <td>{{sClose}}</td>
+</tr>
+    <tr>
+    <td>EOD Runs At: </td>
+    <td>{{sEod}}</td>
+</tr>
+    <tr>
+    <td>Notes: </td>
+    <td>{{notes}}</td>
+</tr>
+</table>
+<p></p>
+
+</body>
+</html> <br>
+  </textarea>
+</mat-card>
   <mat-card>
     <a [href]="emailString" mat-raised-button> Click here to Mail</a>
   </mat-card>

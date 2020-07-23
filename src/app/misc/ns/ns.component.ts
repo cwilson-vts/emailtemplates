@@ -11,7 +11,15 @@ export class NsComponent implements OnInit {
   emailString = '';
   showSpinners = 1;
   showSeconds = false;
-  touchUi = true; 
+
+  custName: string;
+  ticket: string;
+  reason: string;
+  stNight: string;
+  sClose: string;
+  sEod: string;
+  notes: string;
+
   constructor() {}
 
   ngOnInit() {
@@ -25,7 +33,5 @@ export class NsComponent implements OnInit {
   onSubmit(form: NgForm) {
     console.log(form);
     this.type = 'sub';
-    this.emailString =
-      'mailto:ncr_l3_escalations@truno.com?cc=bramos@truno.com;jcabello@truno.com&subject=L3%20Escalations%20-%20';
   }
 }
