@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Form, NgForm } from '@angular/forms';
+import { ManagementService } from "../../shared/services/management.service";
 
 @Component({
   selector: 'app-ns',
@@ -8,10 +9,9 @@ import { Form, NgForm } from '@angular/forms';
 })
 export class NsComponent implements OnInit {
   type: 'sub' | 'notSub';
-  emailString = '';
-  showSpinners = 1;
-  showSeconds = false;
 
+
+mgmt = this.mgmtsvc.getAll();
   custName: string;
   ticket: string;
   reason: string;
@@ -19,8 +19,35 @@ export class NsComponent implements OnInit {
   sClose: string;
   sEod: string;
   notes: string;
+  emailContent: string;
+  emailContentEncoded: string;
 
-  constructor() {}
+  constructor(private mgmtsvc: ManagementService) {
+    this.emailContent = 
+    `
+Store:
+${this.custName}
+
+Task:
+${this.reason}
+
+When:
+${this.stNight}
+
+Store Closes At: 
+${this.sClose}
+
+EOD Runs At: 
+${this.sEod}
+
+Notes:
+${this.notes}
+
+${this.mgmt}
+    `;
+
+    this.emailContentEncoded = encodeURIComponent(this.emailContent);
+  }
 
   ngOnInit() {
     this.type = 'notSub';
@@ -31,7 +58,7 @@ export class NsComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log(form);
     this.type = 'sub';
+    console.log(form)
   }
 }
