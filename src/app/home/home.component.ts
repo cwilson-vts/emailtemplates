@@ -13,14 +13,21 @@ interface Templates {
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   pathID: string;
   selected: string;
+
+  team;
   constructor(private router: Router, private teams: TeamService) {}
   templates: Templates[] = [
     { id: 'ns', name: 'Night Shift Appointment' },
     { id: 'l3esc', name: 'L3 Escalation' },
   ];
+
+  ngOnInit() {
+    this.team = this.teams.getAllTeams();
+    return console.log(this.team);
+  }
 
   onSubmit(selected) {
     console.log(selected);

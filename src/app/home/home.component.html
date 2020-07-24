@@ -1,19 +1,20 @@
 <mat-card>
-        <mat-form-field>
-        <mat-label>Select Your Template</mat-label>
-        <mat-select [(ngModel)]="selected" name="temp">
-        <mat-option *ngFor="let temp of templates" [value]="temp.id">
-        {{temp.name}}
+  <mat-form-field>
+    <mat-label>Select Your Template</mat-label>
+    <mat-select [(ngModel)]="selected" name="temp">
+      <mat-option *ngFor="let temp of templates" [value]="temp.id">
+        {{ temp.name }}
       </mat-option>
     </mat-select>
-</mat-form-field>
-    <a mat-raised-button type='SUBMIT'(click)="onSubmit(selected)">SUBMIT</a>
+  </mat-form-field>
+  <a mat-raised-button type="SUBMIT" (click)="onSubmit(selected)">SUBMIT</a>
 </mat-card>
-<!-- 
-  Will display Team Cards
-<mat-card *ngFor="let team of teams">
-  <mat-card-header>{{ team.id }}</mat-card-header>
-  <mat-card-title></mat-card-title>
-  <mat-card-content></mat-card-content>
+
+Contacts
+<mat-card *ngFor="let team of team">
+  <mat-card-header>Team {{ team.team }}</mat-card-header>
+  <mat-card-title
+    >{{ team.name }} <br />
+    {{ team.phone }}</mat-card-title
+  >
 </mat-card>
--->
