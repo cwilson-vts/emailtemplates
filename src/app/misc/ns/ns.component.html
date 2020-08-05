@@ -1,42 +1,74 @@
 <div *ngIf="!isSub">
   <mat-card>
-    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      {{f.value.custName}}
       <mat-form-field>
         <mat-label>Customer Name</mat-label>
-        <input matInput [(ngModel)]="custName" name="custName" />
+        <input 
+        matInput
+        type="text"
+        ngModel 
+        name="custName" 
+        required>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Night Shift Ticket #</mat-label>
-        <input matInput [(ngModel)]="ticket" name="ticket" />
+        <input 
+        matInput
+        type="text"
+        ngModel 
+        name="ticket" >
       </mat-form-field>
       <mat-form-field>
         <mat-label>Reason for the Appointment</mat-label>
-        <input matInput [(ngModel)]="reason" name="reason" />
+        <input 
+        matInput
+        type="text" 
+        ngModel 
+        name="reason" >
       </mat-form-field>
     <mat-form-field appearance="fill">
         <mat-label>Starting the night of</mat-label>
-  <input matInput [matDatepicker]="picker" [(ngModel)]="stNight" name="stNight">
+  <input 
+  matInput 
+  type="text"
+  [matDatepicker]="picker" 
+  ngModel 
+  name="stNight">
   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker touchUi #picker></mat-datepicker>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Time Store Closes At:</mat-label>
-        <input matInput [(ngModel)]="sClose" name="sClose" />
+        <input 
+        matInput 
+        type="datetime-local"
+        ngModel 
+        name="sClose" >
       </mat-form-field>
       <mat-form-field>
         <mat-label>Time EOD Runs At:</mat-label>
-        <input matInput [(ngModel)]="sEod" name="sEod" />
+        <input 
+        matInput 
+        type="text"
+        ngModel 
+        name="sEod" />
       </mat-form-field>
       <mat-form-field>
         <mat-label>Notes</mat-label>
-        <textarea matInput [(ngModel)]="notes" name="notes" rows="10"></textarea>
+        <textarea 
+        matInput 
+        type="text"
+        ngModel 
+        name="notes" 
+        rows="10"></textarea>
       </mat-form-field>
-      <button mat-raised-button type="submit">SUBMIT</button>
+      <button mat-raised-button>SUBMIT</button>
     </form>
   </mat-card>
 </div>
 <div *ngIf="isSub">
   <mat-card>
-    <a href="mailto:test@test.com?subject=Night%20Shift%20Appointment&body={{emailContentEncoded}}" mat-raised-button> Click here to Mail</a>
+    <a href="mailto:test@test.com?subject=Night%20Shift%20Appointment%20{{custName}}%20{{ticket}}&body={{emailContentEncoded}}" mat-raised-button> Click here to Mail</a>
   </mat-card>
 </div>

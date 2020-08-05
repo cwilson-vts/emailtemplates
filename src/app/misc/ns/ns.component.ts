@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Form, NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { ManagementService } from "../../shared/services/management.service";
 
 @Component({
@@ -11,43 +11,20 @@ export class NsComponent implements OnInit {
   type: 'sub' | 'notSub';
 
 
-mgmt = this.mgmtsvc.getAll();
-  custName: string;
-  ticket: string;
-  reason: string;
-  stNight: string;
-  sClose: string;
-  sEod: string;
-  notes: string;
-  emailContent: string;
-  emailContentEncoded: string;
+  mgmt = this.mgmtsvc.getAll();
+  form;
+  custName = '';
+  ticket = '';
+  reason = '';
+  stNight = '';
+  sClose = '';
+  sEod = '';
+  notes = '';
+  emailContent;
+  emailContentEncoded;
 
-  constructor(private mgmtsvc: ManagementService) {
-    this.emailContent = 
-    `
-Store:
-${this.custName}
-
-Task:
-${this.reason}
-
-When:
-${this.stNight}
-
-Store Closes At: 
-${this.sClose}
-
-EOD Runs At: 
-${this.sEod}
-
-Notes:
-${this.notes}
-
-${this.mgmt}
-    `;
-
-    this.emailContentEncoded = encodeURIComponent(this.emailContent);
-  }
+  constructor(private mgmtsvc: ManagementService) {}
+  
 
   ngOnInit() {
     this.type = 'notSub';
@@ -58,7 +35,24 @@ ${this.mgmt}
   }
 
   onSubmit(form: NgForm) {
+    console.log(form.value);
     this.type = 'sub';
-    console.log(form)
+    this.emailContent = 
+    ` Store: ${form.value.custName}
+
+    Task: ${form.value.reason}
+
+    When: ${form.value.stNight}
+
+    Store Closes At: ${form.value.sClose}
+
+    EOD Runs At: ${form.value.sEod}
+
+    Notes: ${form.value.notes}
+
+    ${this.mgmt}
+        `;
+
+    this.emailContentEncoded = encodeURIComponent(this.emailContent);
   }
-}
+  }

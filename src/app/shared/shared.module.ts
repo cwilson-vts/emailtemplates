@@ -8,11 +8,6 @@ import { NsComponent } from '../misc/ns/ns.component';
 import { RouterModule } from '@angular/router';
 import { ShellComponent } from './shell/shell.component';
 
-import {
-  NgxMatDatetimePickerModule, 
-  NgxMatNativeDateModule, 
-  NgxMatTimepickerModule 
-} from '@angular-material-components/datetime-picker';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from "@angular/material/datepicker";
@@ -36,9 +31,6 @@ const modules = [
   FormsModule,
   LayoutModule,
   RouterModule,
-  NgxMatDatetimePickerModule, 
-  NgxMatNativeDateModule,
-  NgxMatTimepickerModule,
   MatButtonModule,
   MatCardModule,
   MatDatepickerModule,
