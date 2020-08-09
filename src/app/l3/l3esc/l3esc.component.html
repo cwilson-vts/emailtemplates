@@ -3,47 +3,47 @@
     <form #f="ngForm" (ngSubmit)="onSubmit(f)" >
         <mat-form-field>
             <mat-label>Customer Name</mat-label>
-            <input matInput ngModel name="custName">
+            <input matInput [(ngModel)]="customerName" name="customerName">
         </mat-form-field>
         <mat-form-field>
             <mat-label>Contact Name</mat-label>
-            <input matInput ngModel name="stcontact">
+            <input matInput [(ngModel)]="storeContact" name="storeContact">
         </mat-form-field>
         <mat-form-field>
             <mat-label>Controller Software and Version</mat-label>
-            <input matInput ngModel name="sft">
+            <input matInput [(ngModel)]="softwareVersion" name="softwareVersion">
         </mat-form-field>
         <mat-form-field>
             <mat-label>Back Office Type</mat-label>
-            <input matInput ngModel name="boType">
+            <input matInput [(ngModel)]="boType" name="boType">
         </mat-form-field>
         <mat-form-field>
             <mat-label>Hardware Type</mat-label>
-            <input matInput ngModel name="hdwrtype">
+            <input matInput [(ngModel)]="hdwrType" name="hdwrType">
         </mat-form-field>
         <mat-form-field>
             <mat-label>Issue</mat-label>
-            <input matInput ngModel name="issue">
+            <input matInput [(ngModel)]="issue" name="issue">
         </mat-form-field>
         <mat-form-field>
             <mat-label>Work Done</mat-label>
-            <textarea matInput ngModel name="work" rows="10"></textarea>
+            <textarea matInput [(ngModel)]="notes" name="notes" rows="10"></textarea>
         </mat-form-field>
         <mat-form-field>
             <mat-label>E-Auto Number</mat-label>
-            <input matInput ngModel name="eaNumber">
+            <input matInput [(ngModel)]="ticket" name="ticket">
         </mat-form-field>
         <mat-form-field>
             <mat-label>Manager Approving this Template</mat-label>
-            <input matInput ngModel name="mgrApp">
+            <input matInput [(ngModel)]="managerApproval" name="managerApproval">
         </mat-form-field>
         <mat-form-field>
             <mat-label>NCR Ticket Number</mat-label>
-            <input matInput ngModel name="ncrNum">
+            <input matInput [(ngModel)]="ncrNumber" name="ncrNumber">
         </mat-form-field>
         <mat-form-field>
             <mat-label>NCR Tech Name</mat-label>
-            <input matInput ngModel name="ncrTech">
+            <input matInput [(ngModel)]="ncrTech" name="ncrTech">
         </mat-form-field>
         <button mat-raised-button type="submit" >SUBMIT</button>
     
@@ -52,6 +52,51 @@
 </div>
 <div *ngIf=isSub>
     <mat-card>
-<a [href]="emailString" mat-raised-button> Click here to Mail</a>
+        3️⃣L3 Escalation for: {{customerName}} {{ticket}} 3️⃣
+        <br>
+        <h2>L3 Escalation:</h2>
+        <p>
+        Customer Name: {{customerName}}<br>
+        Store Contact: {{storeContact}} <br>
+        Software Type & Version: {{softwareVersion}} <br>
+        Back Office Type: {{boType}} <br>
+        Hardware Type: {{hdwrType}} <br>
+        What is the Issue: {{issue}} <br>
+        Work you have performed: {{notes}} <br>
+        Ticket #: {{ticket}} <br>
+        Manager that Approved Email: {{managerApproval}} <br>
+        NCR Ticket Number: {{ncrNumber}} <br>
+        NCR Techniciaan: {{ncrTech}} <br>
+        <p>
+        <h3>Escalations Team:</h3>
+        <div *ngFor="let e of escalation">
+            <table>
+                <tr>
+                <td>Team {{e.team}}</td>
+                <td></td>
+                <td> {{e.name}}</td>
+                <td></td>
+                <td> {{e.phone}}</td>
+                </tr>
+            </table>
+            </div><br>
+        <h3>Support Leadership: <br></h3>
+        <div *ngFor="let p of leadership">
+        {{p.title}} - {{p.name}} - {{p.phone}}
+        </div><br>
+        <h3>Team Managers:<br></h3>
+        <div *ngFor="let m of managers">
+        <table>
+            <tr>
+            <td>Team {{m.team}}</td>
+            <td></td>
+            <td> {{m.name}}</td>
+            <td></td>
+            <td> {{m.phone}}</td>
+            </tr>
+        </table>
+        </div>
+    <button mat-raised-button (click)="goBack()">Go Back</button>
+    <a href="mailto:test@test.com?subject=Night%20Shift%20Appointment%20&body={{emailContentEncoded}}" mat-raised-button> Click here to Mail</a>
 </mat-card>
 </div>

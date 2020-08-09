@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ManagementService } from "../../shared/services/management.service";
+import { TeamService } from '../../shared/services/teams.service';
 
 @Component({
   selector: 'app-ns',
@@ -9,25 +9,27 @@ import { ManagementService } from "../../shared/services/management.service";
 })
 export class NsComponent implements OnInit {
   type: 'sub' | 'notSub';
-
-
-  mgmt = this.mgmtsvc.getAll();
   form;
-  custName = '';
-  ticket = '';
-  reason = '';
-  stNight = '';
-  sClose = '';
-  sEod = '';
-  notes = '';
+  customerName: string = '';
+  ticket: string = '';
+  reason: string = '';
+  startingNight: string = '';
+  storeClose: string= '';
+  storeEod: string = '';
+  notes: string = '';
   emailContent;
   emailContentEncoded;
 
-  constructor(private mgmtsvc: ManagementService) {}
+  constructor(private team: TeamService) {}
   
+teamArry;
+managers;
+leadership;
 
   ngOnInit() {
     this.type = 'notSub';
+    this.managers = this.team.getAllMgr();
+    this.leadership = this.team.getLeadership();
   }
 
   get isSub() {
@@ -35,10 +37,9 @@ export class NsComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log(form.value);
     this.type = 'sub';
     this.emailContent = 
-    ` Store: ${form.value.custName}
+    `Store: ${form.value.custName}
 
     Task: ${form.value.reason}
 
@@ -50,9 +51,12 @@ export class NsComponent implements OnInit {
 
     Notes: ${form.value.notes}
 
-    ${this.mgmt}
+    ${this.teamArry.team} - ${this.teamArry.name} - ${this.teamArry.phone}
         `;
 
     this.emailContentEncoded = encodeURIComponent(this.emailContent);
+  }
+  goBack() {
+    this.type = 'notSub';
   }
   }
