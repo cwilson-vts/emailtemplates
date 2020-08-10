@@ -3,64 +3,56 @@
     <form #f="ngForm" (ngSubmit)="onSubmit(f)">
       <mat-form-field>
         <mat-label>Customer Name</mat-label>
-        <input 
-        matInput
-        type="text"
-        [(ngModel)]="customerName" 
-        name="customerName" 
-        required>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="customerName"
+          name="customerName"
+          required
+        />
       </mat-form-field>
       <mat-form-field>
         <mat-label>Night Shift Ticket #</mat-label>
-        <input 
-        matInput
-        type="text"
-        [(ngModel)]="ticket" 
-        name="ticket" >
+        <input matInput type="text" [(ngModel)]="ticket" name="ticket" />
       </mat-form-field>
       <mat-form-field>
         <mat-label>Reason for the Appointment</mat-label>
-        <input 
-        matInput
-        type="text" 
-        [(ngModel)]="reason" 
-        name="reason" >
+        <input matInput type="text" [(ngModel)]="reason" name="reason" />
       </mat-form-field>
-    <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill">
         <mat-label>Starting the night of</mat-label>
-  <input 
-  matInput 
-  type="text"
-  [matDatepicker]="picker" 
-  [(ngModel)]="startingNight" 
-  name="startingNight">
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker touchUi #picker></mat-datepicker>
+        <input
+          matInput
+          type="text"
+          [matDatepicker]="picker"
+          [(ngModel)]="startingNight"
+          name="startingNight"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker></mat-datepicker>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Time Store Closes At:</mat-label>
-        <input 
-        matInput 
-        type="datetime-local"
-        [(ngModel)]="storeClose" 
-        name="storeClose" >
+        <input
+          matInput
+          type="datetime-local"
+          [(ngModel)]="storeClose"
+          name="storeClose"
+        />
       </mat-form-field>
       <mat-form-field>
         <mat-label>Time EOD Runs At:</mat-label>
-        <input 
-        matInput 
-        type="text"
-        [(ngModel)]="storeEod" 
-        name="storeEod" />
+        <input matInput type="text" [(ngModel)]="storeEod" name="storeEod" />
       </mat-form-field>
       <mat-form-field>
         <mat-label>Notes</mat-label>
-        <textarea 
-        matInput 
-        type="text"
-        [(ngModel)]="notes" 
-        name="notes" 
-        rows="10"></textarea>
+        <textarea
+          matInput
+          type="text"
+          [(ngModel)]="notes"
+          name="notes"
+          rows="10"
+        ></textarea>
       </mat-form-field>
       <button mat-raised-button>SUBMIT</button>
     </form>
@@ -69,33 +61,34 @@
 <div *ngIf="isSub">
   <mat-card>
     <p>
-      🔥 Night Shift Appointment for: {{customerName}} {{ticket}} 🔥
-      <br>
-      Store: {{customerName}}<br>
-      Task: {{reason}} <br>
-      Starting the Night of: {{startingNight}} <br>
-      Store Close @: {{storeClose}} <br>
-      Store has EOD @: {{storeEod}} <br>
-      Notes: {{notes}} <br>
+      🔥 Night Shift Appointment for: {{ customerName }} {{ ticket }} 🔥
+      <br />
+      Store: {{ customerName }}<br />
+      Task: {{ reason }} <br />
+      Starting the Night of: {{ startingNight }} <br />
+      Store Close @: {{ storeClose }} <br />
+      Store has EOD @: {{ storeEod }} <br />
+      Notes: {{ notes }} <br />
     </p>
-    <p>
-      Support Leadership <br>
-      <div *ngFor="let p of leadership">
-        {{p.title}} - {{p.name}} - {{p.phone}}
-      </div><br>
-      Team Managers:<br>
-      <div *ngFor="let m of managers">
-        <table>
-          <tr>
-            <td>Team {{m.team}}</td>
-            <td></td>
-            <td> {{m.name}}</td>
-            <td></td>
-            <td> {{m.phone}}</td>
-          </tr>
-        </table>
-      </div>
+    <p>Support Leadership <br /></p>
+
+    <div *ngFor="let p of leadership">
+      {{ p.title }} - {{ p.name }} - {{ p.phone }}
+    </div>
+    <br />
+    Team Managers:<br />
+    <div *ngFor="let m of managers">
+      <table>
+        <tr>
+          <td>Team {{ m.team }}</td>
+          <td></td>
+          <td>{{ m.name }}</td>
+          <td></td>
+          <td>{{ m.phone }}</td>
+        </tr>
+      </table>
+    </div>
     <button mat-raised-button (click)="goBack()">Go Back</button>
-    <a href="mailto:test@test.com?subject=Night%20Shift%20Appointment%20&body={{emailContentEncoded}}" mat-raised-button> Click here to Mail</a>
+    <a [href]="fileUrl" download="template.eml" mat-raised-button >Click here to Mail</a>
   </mat-card>
 </div>
