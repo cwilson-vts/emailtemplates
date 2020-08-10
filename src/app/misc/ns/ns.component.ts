@@ -20,6 +20,38 @@ export class NsComponent implements OnInit {
   notes = '';
   emailContent;
   emailContentEncoded;
+  template = `
+To: Night Shift <supportteamn@truno.com>
+Subject: 🔥 Night Shift Appointment for: {{ customerName }} {{ ticket }} 🔥
+X-Unsent: 1
+Content-Type: text/html
+<p>
+  🔥 Night Shift Appointment for: {{ customerName }} {{ ticket }} 🔥
+  <br />
+  Store: {{ customerName }}<br />
+  Task: {{ reason }} <br />
+  Starting the Night of: {{ startingNight }} <br />
+  Store Close @: {{ storeClose }} <br />
+  Store has EOD @: {{ storeEod }} <br />
+  Notes: {{ notes }} <br />
+</p>
+<p>Support Leadership <br /></p>
+
+<div *ngFor="let p of leadership">
+  {{ p.title }} - {{ p.name }} - {{ p.phone }}
+</div>
+<br />
+Team Managers:<br />
+<div *ngFor="let m of managers">
+  <table>
+    <tr>
+      <td>Team {{ m.team }}</td>
+      <td></td>
+      <td>{{ m.name }}</td>
+      <td></td>
+      <td>{{ m.phone }}</td>
+    </tr>
+  </table>`;
 
   constructor(private team: TeamService, private sanitizer: DomSanitizer) {}
 
@@ -39,20 +71,9 @@ export class NsComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     this.type = 'sub';
-    this.emailContent = `Store: ${form.value.custName}
-
-    Task: ${form.value.reason}
-
-    When: ${form.value.stNight}
-
-    Store Closes At: ${form.value.sClose}
-
-    EOD Runs At: ${form.value.sEod}
-
-    Notes: ${form.value.notes}
-        `;
-
-    this.emailContentEncoded = encodeURIComponent(this.emailContent);
+    console.log(form)
+    const data = new Blob([this.template], {type:'message/rfc822'});
+    this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(data));
   }
 
   goBack() {
@@ -92,7 +113,7 @@ Content-Type: text/html
         <td>{{ m.phone }}</td>
       </tr>
     </table>`;
-    const blob = new Blob([data], { type: 'application/octet-stream' });
+    const blob = new Blob([data], { type: 'message/rfc822' });
     
     this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
       window.URL.createObjectURL(blob)
