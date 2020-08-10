@@ -1,14 +1,13 @@
 <div *ngIf="!isSub">
   <mat-card>
     <form #f="ngForm" (ngSubmit)="onSubmit(f)">
-      {{f.value.custName}}
       <mat-form-field>
         <mat-label>Customer Name</mat-label>
         <input 
         matInput
         type="text"
-        ngModel 
-        name="custName" 
+        [(ngModel)]="customerName" 
+        name="customerName" 
         required>
       </mat-form-field>
       <mat-form-field>
@@ -16,7 +15,7 @@
         <input 
         matInput
         type="text"
-        ngModel 
+        [(ngModel)]="ticket" 
         name="ticket" >
       </mat-form-field>
       <mat-form-field>
@@ -24,7 +23,7 @@
         <input 
         matInput
         type="text" 
-        ngModel 
+        [(ngModel)]="reason" 
         name="reason" >
       </mat-form-field>
     <mat-form-field appearance="fill">
@@ -33,8 +32,8 @@
   matInput 
   type="text"
   [matDatepicker]="picker" 
-  ngModel 
-  name="stNight">
+  [(ngModel)]="startingNight" 
+  name="startingNight">
   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker touchUi #picker></mat-datepicker>
       </mat-form-field>
@@ -43,23 +42,23 @@
         <input 
         matInput 
         type="datetime-local"
-        ngModel 
-        name="sClose" >
+        [(ngModel)]="storeClose" 
+        name="storeClose" >
       </mat-form-field>
       <mat-form-field>
         <mat-label>Time EOD Runs At:</mat-label>
         <input 
         matInput 
         type="text"
-        ngModel 
-        name="sEod" />
+        [(ngModel)]="storeEod" 
+        name="storeEod" />
       </mat-form-field>
       <mat-form-field>
         <mat-label>Notes</mat-label>
         <textarea 
         matInput 
         type="text"
-        ngModel 
+        [(ngModel)]="notes" 
         name="notes" 
         rows="10"></textarea>
       </mat-form-field>
@@ -69,6 +68,34 @@
 </div>
 <div *ngIf="isSub">
   <mat-card>
-    <a href="mailto:test@test.com?subject=Night%20Shift%20Appointment%20{{custName}}%20{{ticket}}&body={{emailContentEncoded}}" mat-raised-button> Click here to Mail</a>
+    <p>
+      🔥 Night Shift Appointment for: {{customerName}} {{ticket}} 🔥
+      <br>
+      Store: {{customerName}}<br>
+      Task: {{reason}} <br>
+      Starting the Night of: {{startingNight}} <br>
+      Store Close @: {{storeClose}} <br>
+      Store has EOD @: {{storeEod}} <br>
+      Notes: {{notes}} <br>
+    </p>
+    <p>
+      Support Leadership <br>
+      <div *ngFor="let p of leadership">
+        {{p.title}} - {{p.name}} - {{p.phone}}
+      </div><br>
+      Team Managers:<br>
+      <div *ngFor="let m of managers">
+        <table>
+          <tr>
+            <td>Team {{m.team}}</td>
+            <td></td>
+            <td> {{m.name}}</td>
+            <td></td>
+            <td> {{m.phone}}</td>
+          </tr>
+        </table>
+      </div>
+    <button mat-raised-button (click)="goBack()">Go Back</button>
+    <a href="mailto:test@test.com?subject=Night%20Shift%20Appointment%20&body={{emailContentEncoded}}" mat-raised-button> Click here to Mail</a>
   </mat-card>
 </div>

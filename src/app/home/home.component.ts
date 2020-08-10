@@ -25,8 +25,8 @@ export class HomeComponent implements OnInit {
   ];
 
   ngOnInit() {
-    this.team = this.teams.getAllTeams();
-    return console.log(this.team);
+    this.team = this.teams.getWholeTeam();
+    return this.team
   }
 
   onSubmit(selected) {
