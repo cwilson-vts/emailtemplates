@@ -1,7 +1,7 @@
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { OAuthSettings } from "src/environments/environment";
 
 import { AppComponent } from './app.component';
@@ -23,8 +23,9 @@ import { SharedModule } from "./shared/shared.module";
       auth: {
         clientId: OAuthSettings.appId
       }
-    })
+    }),
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent]
 })

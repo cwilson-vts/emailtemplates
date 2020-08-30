@@ -1,3 +1,7 @@
+<div>
+  <mgt-people-picker type="person, group"></mgt-people-picker>
+</div>
+
 <div *ngIf="!isSub">
   <mat-card>
     <form #f="ngForm" (ngSubmit)="onSubmit(f)">
@@ -60,18 +64,9 @@
 </div>
 <div *ngIf="isSub">
   <mat-card>
-    <p>
-      🔥 Night Shift Appointment for: {{ customerName }} {{ ticket }} 🔥
-      <br />
-      Store: {{ customerName }}<br />
-      Task: {{ reason }} <br />
-      Starting the Night of: {{ startingNight }} <br />
-      Store Close @: {{ storeClose }} <br />
-      Store has EOD @: {{ storeEod }} <br />
-      Notes: {{ notes }} <br />
-    </p>
+    {{mail.subject}}
+    {{mail.body.content}}
     <p>Support Leadership <br /></p>
-
     <div *ngFor="let p of leadership">
       {{ p.title }} - {{ p.name }} - {{ p.phone }}
     </div>

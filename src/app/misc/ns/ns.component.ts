@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { TeamService } from '../../shared/services/teams.service';
-import { DomSanitizer } from '@angular/platform-browser';
-import { toBase64String } from '@angular/compiler/src/output/source_map';
+import { Client } from "@microsoft/microsoft-graph-client";
+import { MgtPeoplePicker} from "@microsoft/mgt";
+
+import { AuthService } from "src/app/shared/services/auth.service";
 
 @Component({
   selector: 'app-ns',
@@ -10,8 +12,32 @@ import { toBase64String } from '@angular/compiler/src/output/source_map';
   styleUrls: ['./ns.component.scss'],
 })
 export class NsComponent implements OnInit {
+  graphClient:  Client;
 
-  constructor(private team: TeamService, private sanitizer: DomSanitizer) {}
+  constructor(
+    private team: TeamService,
+    private authService: AuthService) {
+    this.graphClient = Client.init({
+      authProvider: async (done) => {
+        let token = await this.authService.getAccessToken()
+          .catch((reason) => {
+            done(reason, null);
+          });
+
+        if (token)
+        {
+          done(null, token);
+        } else {
+          done("Could not get an access token", null);
+        }
+      }
+    });
+  }
+  ngOnInit() {
+    this.type = 'notSub';
+    this.managers = this.team.getAllMgr();
+    this.leadership = this.team.getLeadership();
+  }
 
   fileUrl;
   managers;
@@ -25,51 +51,43 @@ export class NsComponent implements OnInit {
   storeClose = '';
   storeEod = '';
   notes = '';
-  template = `
-  To: User <user@domain.demo>
-  Subject: 🔥 Night Shift Appointment for: ${this.customerName} ${this.ticket} 🔥
-  X-Unsent: 1
-  Content-Type: text/html
+  mail = {
+    subject: '🔥 Night Shift Appointment for: {{ customerName }} {{ticket}} 🔥',
+    toRecipients: [
+        {
+            emailAddress: {
+                address: "PradeepG@catanbridesigns.onmicrosoft.com",
+            },
+        },
+    ],
+    body: {
+        content: `<p>
+        Store: ${this.customerName}<br />
+        Task: ${this.reason} <br />
+        Starting the Night of: ${this.startingNight} <br />
+        Store Close @: ${this.storeClose} <br />
+        Store has EOD @: ${this.storeEod} <br />
+        Notes: ${this.notes} <br />
+        </p>
+      `,
+        contentType: "html",
+    },
+};
   
-  <html>
-  <head>
-  </head>
-  <body>
-  <p>
-      Store: ${this.customerName}<br />
-      Task: ${this.reason} <br />
-      Starting the Night of: ${this.startingNight} <br />
-      Store Close @: ${this.storeClose} <br />
-      Store has EOD @: ${this.storeEod} <br />
-      Notes: ${this.notes} <br />
-    </p>
-      </body>
-      </html>`;
-
-  ngOnInit() {
-    this.type = 'notSub';
-    this.managers = this.team.getAllMgr();
-    this.leadership = this.team.getLeadership();
-  }
-
   get isSub() {
     return this.type === 'sub';
   }
 
-  onSubmit(form: NgForm) {
+  async onSubmit(form: NgForm) {
     this.type = 'sub';
     console.log(form)
-    const blob = new Blob([this.template], {type: 'application/vnd.ms-outlook'});
-    if (this.fileUrl !== null) {
-      window.URL.revokeObjectURL(this.fileUrl);
-    }
-    this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL((blob)))
-    console.log(this.fileUrl)
-    return this.fileUrl;
+    let response = await this.graphClient.api("/me/sendMail").post({ message: this.mail });
+    console.log(response);
+} catch (error) {
+    throw error;
   }
 
   goBack() {
     this.type = 'notSub';
-    window.URL.revokeObjectURL(this.fileUrl);
   }
 }

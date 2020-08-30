@@ -4,7 +4,6 @@ import { Client } from "@microsoft/microsoft-graph-client";
 
 import { OAuthSettings } from "../../../environments/environment";
 import { User } from "../models/user";
-import { async } from 'rxjs/internal/scheduler/async';
 
 @Injectable({
   providedIn: 'root'
