@@ -2,16 +2,13 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-export const environment = {
-  production: false,
-  OAuthSettings: {
-    appId: '4845c951-88625134b01e',
+export const OAuthSettings = {
+    appId: '4845c951-734b-4c60-bd25-88625134b01e',
     scopes: [
       "user.read",
       "mail.send",
       "contacts.read"
     ]
-  }
 };
 
 /*

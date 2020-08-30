@@ -1,3 +1,8 @@
+<main>
+  <div *ngIf="!authenticated">
+    <button mat-raised-button (click)="signIn()">Click here to sign in</button>
+  </div>
+  <div *ngIf="authenticated">
 <mat-card>
   <mat-form-field>
     <mat-label>Select Your Template</mat-label>
@@ -9,8 +14,8 @@
   </mat-form-field>
   <a mat-raised-button type="SUBMIT" (click)="onSubmit(selected)">SUBMIT</a>
 </mat-card>
+</div>
 
-Contacts
 <!--<mat-card *ngFor="let team of team">
   <mat-card-header>Team {{ team.team }}</mat-card-header>
   <mat-card-title
@@ -18,3 +23,4 @@ Contacts
     {{ team.phone }}</mat-card-title
   >
 </mat-card>-->
+</main>

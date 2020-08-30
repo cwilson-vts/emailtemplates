@@ -2,23 +2,28 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { OAuthSettings } from "src/environments/environment";
 
 import { AppComponent } from './app.component';
+import { MsalModule } from "@azure/msal-angular";
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from "./shared/shared.module";
-import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule,
-    ReactiveFormsModule
+    MsalModule.forRoot({
+      auth: {
+        clientId: OAuthSettings.appId
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
