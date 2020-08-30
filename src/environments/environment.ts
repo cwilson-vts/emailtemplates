@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   OAuthSettings: {
-    appId: '',
+    appId: '4845c951--88625134b01e',
     scopes: [
       "user.read",
       "mail.send",
