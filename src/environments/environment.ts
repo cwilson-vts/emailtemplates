@@ -3,12 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const OAuthSettings = {
-    appId: '4845c951-734b-4c60-bd25-88625134b01e',
-    scopes: [
-      "user.read",
-      "mail.send",
-      "contacts.read"
-    ]
+  appId: '4845c951-734b-4c60-bd25-88625134b01e',
+  scopes: ['user.read', 'mail.send', 'contacts.read'],
 };
 
 /*

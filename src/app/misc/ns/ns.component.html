@@ -1,6 +1,4 @@
-<div>
-  <mgt-people-picker type="person, group"></mgt-people-picker>
-</div>
+<div></div>
 
 <div *ngIf="!isSub">
   <mat-card>
@@ -64,8 +62,8 @@
 </div>
 <div *ngIf="isSub">
   <mat-card>
-    {{mail.subject}}
-    {{mail.body.content}}
+    {{ mail.subject }}
+    {{ mail.body.content }}
     <p>Support Leadership <br /></p>
     <div *ngFor="let p of leadership">
       {{ p.title }} - {{ p.name }} - {{ p.phone }}
@@ -84,6 +82,6 @@
       </table>
     </div>
     <button mat-raised-button (click)="goBack()">Go Back</button>
-    <a [href]="fileUrl" download="template.eml" mat-raised-button >Click here to Mail</a>
+    <button mat-raised-button (click)="sendMail()">Click here to Mail</button>
   </mat-card>
 </div>
