@@ -48,7 +48,7 @@ export class NsComponent implements OnInit {
   storeEod = '';
   notes = '';
   mail = {};
-  mailSubject = `🔥 Night Shift Appointment for: ${this.customerName} ${this.ticket} 🔥`;
+  mailSubject = '🔥 Night Shift Appointment for: ' , {customerName}, ' ', {this.ticket},' 🔥';
   mailToRecipients = [{ emailAddress: { address: 'supportteamn@truno.com' } }];
   mailCCRecipients = [];
   mailBody = [
